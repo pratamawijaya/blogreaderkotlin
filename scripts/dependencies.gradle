@@ -1,0 +1,37 @@
+ext {
+  //Version
+  supportLibrary = '25.0.1'
+  playService = '10.0.0'
+  retrofit = '2.1.0'
+  realm = '0.87.1'
+  jodatime = '2.9.1'
+  timber = '4.1.2'
+  rxVersion = '1.1.6'
+  rxAndroid = '1.2.1'
+  dagger = '2.7'
+
+  //Support Libraries dependencies
+  supportDependencies = [design      : "com.android.support:design:${supportLibrary}",
+                         recyclerView: "com.android.support:recyclerview-v7:${supportLibrary}",
+                         cardView    : "com.android.support:cardview-v7:${supportLibrary}",
+                         appCompat   : "com.android.support:appcompat-v7:${supportLibrary}",
+                         percent     : "com.android.support:percent:${supportLibrary}"]
+
+
+  retrofitDependencies = [retrofitBase : "com.squareup.retrofit2:retrofit:${retrofit}",
+                          converter    : "com.squareup.retrofit2:converter-gson:${retrofit}",
+                          rxjavaAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofit}",
+                          logging      : "com.squareup.okhttp3:logging-interceptor:+"]
+
+  daggerDependencies = [baseDagger      : "com.google.dagger:dagger:${dagger}",
+                        compilerDagger  : "com.google.dagger:dagger-compiler:${dagger}",
+                        annotationDagger: "org.glassfish:javax.annotation:10.0-b28"]
+
+  rxDependencies = [rxAndroid: "io.reactivex:rxandroid:${rxAndroid}",
+                    rxJava   : "io.reactivex:rxjava:${rxVersion}",
+                    rxLint   : "nl.littlerobots.rxlint:rxlint:1.0"]
+
+  utilityDependency = [database: "io.realm:realm-android:${realm}",
+                       time    : "net.danlew:android.joda:${jodatime}",
+                       logging : "com.jakewharton.timber:timber:${timber}"]
+}
