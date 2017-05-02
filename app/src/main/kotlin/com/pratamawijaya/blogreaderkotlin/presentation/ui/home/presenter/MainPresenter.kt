@@ -12,7 +12,8 @@ import javax.inject.Inject
  * Date : Dec - 12/23/16
  * Project Name : BlogReaderKotlin
  */
-class MainPresenter @Inject constructor(private val getBlogPosts: GetBlogPosts) : BasePresenter<MainView>() {
+class MainPresenter @Inject constructor(
+    private val getBlogPosts: GetBlogPosts) : BasePresenter<MainView>() {
 
   private var compositeSub = CompositeSubscription()
 
@@ -23,9 +24,7 @@ class MainPresenter @Inject constructor(private val getBlogPosts: GetBlogPosts) 
 
   override fun detachView() {
     super.detachView()
-    if (compositeSub != null) {
-      compositeSub.unsubscribe()
-    }
+    compositeSub.unsubscribe()
   }
 
   fun getListPost(page: Int, isUpdate: Boolean) {
