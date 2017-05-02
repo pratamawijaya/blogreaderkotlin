@@ -9,6 +9,7 @@ import com.pratamawijaya.blogreaderkotlin.presentation.base.BaseView
  * Project Name : BlogReaderKotlin
  */
 interface MainView : BaseView {
-  fun setData(it: List<Post>)
+
+  fun displayData(t: List<Post>)
 
 }

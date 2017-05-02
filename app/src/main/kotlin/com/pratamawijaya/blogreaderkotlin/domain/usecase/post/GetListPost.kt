@@ -5,7 +5,6 @@ import com.pratamawijaya.blogreaderkotlin.domain.executor.PostExecutionThread
 import com.pratamawijaya.blogreaderkotlin.domain.executor.ThreadExecutor
 import com.pratamawijaya.blogreaderkotlin.domain.repository.PostRepository
 import com.pratamawijaya.blogreaderkotlin.domain.usecase.UseCase
-import io.reactivex.Observable
 import javax.inject.Inject
 
 /**
@@ -13,18 +12,19 @@ import javax.inject.Inject
  * Date : Dec - 12/23/16
  * Project Name : BlogReaderKotlin
  */
-class GetBlogPost @Inject constructor(threadExecutor: ThreadExecutor,
+class GetListPost @Inject constructor(threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread,
-    private val repository: PostRepository) : UseCase<Post, GetBlogPost.Params>(
+    private val repository: PostRepository) : UseCase<List<Post>, GetListPost.Params>(
     threadExecutor, postExecutionThread) {
-  override fun buildUseCaseObservable(params: Params): Observable<Post> {
-    return repository.getPost(params.postId,params.isUpdate)
+
+  override fun buildUseCaseObservable(params: Params): io.reactivex.Observable<List<Post>> {
+    return repository.getPosts(params.page, params.isUpdate)
   }
 
-  class Params private constructor(val postId: Int, val isUpdate: Boolean) {
+  class Params private constructor(val page: Int, val isUpdate: Boolean) {
     companion object {
-      fun createParams(postId: Int, isUpdate: Boolean): Params {
-        return Params(postId, isUpdate)
+      fun forPost(page: Int, isUpdate: Boolean): Params {
+        return Params(page, isUpdate)
       }
     }
   }

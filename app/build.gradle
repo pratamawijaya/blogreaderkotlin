@@ -43,10 +43,10 @@ dependencies {
   })
 
   // retrofit
-  compile retrofitDependencies.retrofitBase
-  compile retrofitDependencies.converter
-  compile retrofitDependencies.rxjavaAdapter
-  compile retrofitDependencies.logging
+  compile 'com.squareup.retrofit2:retrofit:2.2.0'
+  compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+  compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+  compile 'com.squareup.okhttp3:logging-interceptor:+'
 
   compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
   compile 'io.reactivex.rxjava2:rxjava:2.0.9'
@@ -55,7 +55,7 @@ dependencies {
   kapt 'com.google.dagger:dagger-compiler:2.7'
   provided 'org.glassfish:javax.annotation:10.0-b28'
 
-  compile 'com.android.support:appcompat-v7:25.1.0'
+  compile 'com.android.support:appcompat-v7:25.3.1'
   testCompile 'junit:junit:4.12'
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
   compile 'com.jakewharton.timber:timber:4.4.0'

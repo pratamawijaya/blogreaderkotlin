@@ -8,8 +8,9 @@ import okhttp3.OkHttpClient
 import retrofit2.Converter.Factory
 import retrofit2.Retrofit
 import retrofit2.Retrofit.Builder
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 /**
  * Created by mnemonix
@@ -18,14 +19,15 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 
 @Module
+@Singleton
 class ApiModule {
 
   @Provides fun provideRetrofit(okHttpClient: OkHttpClient,
       converterFactory: Factory): Retrofit {
-    return Builder().baseUrl("")
+    return Builder().baseUrl("https://pratamawijaya.com/api/")
         .client(okHttpClient)
         .addConverterFactory(converterFactory)
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
   }
 
@@ -34,7 +36,5 @@ class ApiModule {
     return gson
   }
 
-  @Provides fun provideConverter(gson: Gson): Factory {
-    return GsonConverterFactory.create(gson)
-  }
+  @Provides fun provideConverter(gson: Gson): Factory = GsonConverterFactory.create(gson)
 }

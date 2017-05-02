@@ -47,7 +47,10 @@ class MainActivity : BaseActivity(), MainView {
   override fun showMessage(message: String?) {
   }
 
-  override fun setData(it: List<Post>) {
+
+
+  override fun displayData(t: List<Post>) {
 
   }
+
 }

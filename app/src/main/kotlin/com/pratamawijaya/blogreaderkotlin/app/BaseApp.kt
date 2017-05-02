@@ -17,9 +17,7 @@ import timber.log.Timber.DebugTree
 class BaseApp : Application() {
 
   companion object {
-    open fun get(context: Context): BaseApp {
-      return context.applicationContext as BaseApp
-    }
+    open fun get(context: Context): BaseApp = context.applicationContext as BaseApp
   }
 
   val appComponent: AppComponent

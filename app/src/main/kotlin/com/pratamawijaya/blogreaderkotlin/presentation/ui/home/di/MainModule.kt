@@ -3,9 +3,9 @@ package com.pratamawijaya.blogreaderkotlin.presentation.ui.home.di
 import android.app.Activity
 import com.pratamawijaya.blogreaderkotlin.data.feature.post.PostRepositoryImpl
 import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
-import com.pratamawijaya.blogreaderkotlin.domain.usecase.UseCase
-import com.pratamawijaya.blogreaderkotlin.domain.usecase.post.GetBlogPosts
 import com.pratamawijaya.blogreaderkotlin.domain.repository.PostRepository
+import com.pratamawijaya.blogreaderkotlin.domain.usecase.UseCase
+import com.pratamawijaya.blogreaderkotlin.domain.usecase.post.GetListPost
 import dagger.Module
 import dagger.Provides
 
@@ -26,7 +26,8 @@ class MainModule constructor(var activity: Activity) {
     return postRepositoryImpl
   }
 
-  @Provides fun provideGetPostUseCase(getBlogPosts: GetBlogPosts): UseCase<List<Post>> {
-    return getBlogPosts
+  @Provides fun provideGetPostUseCase(
+      getListPost: GetListPost): UseCase<List<Post>, GetListPost.Params> {
+    return getListPost
   }
 }

@@ -2,7 +2,7 @@ package com.pratamawijaya.blogreaderkotlin.data.feature.post
 
 import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
 import com.pratamawijaya.blogreaderkotlin.domain.repository.PostRepository
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

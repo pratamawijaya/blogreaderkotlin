@@ -8,7 +8,6 @@ import dagger.Provides
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.OkHttpClient.Builder
 import java.io.File
 
 /**
@@ -18,9 +17,10 @@ import java.io.File
  */
 @Module
 class NetworkModule {
+
   companion object {
-    fun createOkHttpClientBuilder(app: Application): Builder {
-      return Builder().cache(createHttpCache(app))
+    fun createOkHttpClientBuilder(app: Application): OkHttpClient.Builder {
+      return OkHttpClient.Builder().cache(createHttpCache(app))
     }
 
     fun createHttpCache(app: Application): Cache {
@@ -28,7 +28,7 @@ class NetworkModule {
       return Cache(cacheDir, 50 * 1024 * 1024)
     }
 
-    fun createOkHttpClient(okHttpClientBuilder: Builder,
+    fun createOkHttpClient(okHttpClientBuilder: OkHttpClient.Builder,
         interceptors: List<Interceptor>, networkInterceptors: List<Interceptor>): OkHttpClient {
 
       for (intercept in interceptors) {

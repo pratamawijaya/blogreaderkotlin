@@ -12,4 +12,6 @@ open class Post {
   var title: String? = null
   var url: String? = null
   var date: Date? = null
+  var content: String? = null
+
 }

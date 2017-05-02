@@ -2,7 +2,7 @@ ext {
   //Version
   supportLibrary = '25.0.1'
   playService = '10.0.0'
-  retrofit = '2.1.0'
+  retrofit = '2.2.0'
   realm = '0.87.1'
   jodatime = '2.9.1'
   timber = '4.1.2'
@@ -20,7 +20,7 @@ ext {
 
   retrofitDependencies = [retrofitBase : "com.squareup.retrofit2:retrofit:${retrofit}",
                           converter    : "com.squareup.retrofit2:converter-gson:${retrofit}",
-                          rxjavaAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofit}",
+                          rxjavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofit}",
                           logging      : "com.squareup.okhttp3:logging-interceptor:+"]
 
   daggerDependencies = [baseDagger      : "com.google.dagger:dagger:${dagger}",
