@@ -1,6 +1,6 @@
 package com.pratamawijaya.blogreaderkotlin.domain.executor
 
-import rx.Scheduler
+import io.reactivex.Scheduler
 
 /**
  * Created by mnemonix
@@ -8,5 +8,5 @@ import rx.Scheduler
  * Project Name : BlogReaderKotlin
  */
 interface PostExecutionThread {
-  val scheduler: Scheduler
+  fun getScheduler(): Scheduler
 }

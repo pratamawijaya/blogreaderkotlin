@@ -3,8 +3,8 @@ package com.pratamawijaya.blogreaderkotlin.presentation.ui.home.di
 import android.app.Activity
 import com.pratamawijaya.blogreaderkotlin.data.feature.post.PostRepositoryImpl
 import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
-import com.pratamawijaya.blogreaderkotlin.domain.interactor.UseCase
-import com.pratamawijaya.blogreaderkotlin.domain.interactor.post.GetBlogPosts
+import com.pratamawijaya.blogreaderkotlin.domain.usecase.UseCase
+import com.pratamawijaya.blogreaderkotlin.domain.usecase.post.GetBlogPosts
 import com.pratamawijaya.blogreaderkotlin.domain.repository.PostRepository
 import dagger.Module
 import dagger.Provides

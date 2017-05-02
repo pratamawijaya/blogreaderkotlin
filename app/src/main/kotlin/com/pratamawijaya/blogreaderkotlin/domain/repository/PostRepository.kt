@@ -1,7 +1,7 @@
 package com.pratamawijaya.blogreaderkotlin.domain.repository
 
 import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  * Created by mnemonix

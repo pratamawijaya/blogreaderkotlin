@@ -1,6 +1,6 @@
 package com.pratamawijaya.blogreaderkotlin.presentation.ui.home.presenter
 
-import com.pratamawijaya.blogreaderkotlin.domain.interactor.post.GetBlogPosts
+import com.pratamawijaya.blogreaderkotlin.domain.usecase.post.GetBlogPosts
 import com.pratamawijaya.blogreaderkotlin.presentation.base.BasePresenter
 import com.pratamawijaya.blogreaderkotlin.presentation.ui.home.MainView
 import rx.subscriptions.CompositeSubscription
