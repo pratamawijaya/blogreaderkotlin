@@ -21,9 +21,7 @@ open class BasePresenter<T : BaseView> : Presenter<T> {
     return view != null
   }
 
-  fun getView(): T {
-    return view!!
-  }
+  fun getView(): T = view!!
 
   fun checkViewAttached() {
     if (!isViewAttached()) throw MvpViewNotAttachedException()

@@ -16,9 +16,7 @@ abstract class BaseActivity : AppCompatActivity() {
     setupActivityComponent()
   }
 
-  private fun setupActivityComponent() {
-    buildComponent(BaseApp.get(this).appComponent)
-  }
+  private fun setupActivityComponent() = buildComponent(BaseApp.get(this).appComponent)
 
   abstract fun buildComponent(appComponent: AppComponent)
 }

@@ -75,7 +75,7 @@ class AppModule constructor(private val application: BaseApp) {
 
   @Provides @Singleton fun provideRetrofit(okHttpClient: OkHttpClient,
       factory: Converter.Factory): Retrofit {
-    return Retrofit.Builder().baseUrl("")
+    return Retrofit.Builder().baseUrl("https://pratamawijaya.com/api/")
         .client(okHttpClient)
         .addConverterFactory(factory)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
