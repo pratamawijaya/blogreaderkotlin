@@ -9,9 +9,14 @@ import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
  * Project Name : BlogReaderKotlin
  */
 class PostModelMapper {
+
   companion object {
-    fun map(form: PostModel): Post {
-      return Post()
-    }
+    fun map(
+        postModel: PostModel): Post = Post(postModel.id, postModel.title, postModel.url,
+        postModel.date, postModel.content,
+        postModel.modified)
+
+    fun map(postModels: List<PostModel>): List<Post> = postModels.map { map(it) }
+
   }
 }

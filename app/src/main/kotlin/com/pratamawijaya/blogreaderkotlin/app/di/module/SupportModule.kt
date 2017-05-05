@@ -1,4 +1,4 @@
-package com.pratamawijaya.blogreaderkotlin.app.di
+package com.pratamawijaya.blogreaderkotlin.app.di.module
 
 import com.pratamawijaya.blogreaderkotlin.app.di.scope.OkHttpInterceptors
 import com.pratamawijaya.blogreaderkotlin.app.di.scope.OkHttpNetworkInterceptors
@@ -6,6 +6,8 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
+import javax.inject.Singleton
 
 /**
  * Created by pratama
@@ -13,6 +15,7 @@ import okhttp3.logging.HttpLoggingInterceptor
  * Project Name : BlogReaderKotlin
  */
 @Module
+@Singleton
 class SupportModule {
 
   @Provides
@@ -20,7 +23,7 @@ class SupportModule {
   fun provideOkHttpInterceptors(): List<Interceptor> {
     // create http logging
     val httpLogging = HttpLoggingInterceptor()
-    httpLogging.level = HttpLoggingInterceptor.Level.BODY
+    httpLogging.level = BODY
 
     // add to interceptor list
     val interceptorList = arrayListOf<Interceptor>()

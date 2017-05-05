@@ -1,13 +1,6 @@
 package com.pratamawijaya.blogreaderkotlin.presentation.ui.home.di
 
 import android.app.Activity
-import com.pratamawijaya.blogreaderkotlin.data.feature.post.PostRepositoryImpl
-import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
-import com.pratamawijaya.blogreaderkotlin.domain.repository.PostRepository
-import com.pratamawijaya.blogreaderkotlin.domain.usecase.UseCase
-import com.pratamawijaya.blogreaderkotlin.domain.usecase.post.GetListPost
-import dagger.Module
-import dagger.Provides
 
 /**
  * Created by mnemonix
@@ -15,19 +8,7 @@ import dagger.Provides
  * Project Name : BlogReaderKotlin
  */
 
-@Module
 class MainModule constructor(var activity: Activity) {
 
-  @Provides fun provideActivity(): Activity {
-    return activity
-  }
 
-  @Provides fun provideRepository(postRepositoryImpl: PostRepositoryImpl): PostRepository {
-    return postRepositoryImpl
-  }
-
-  @Provides fun provideGetPostUseCase(
-      getListPost: GetListPost): UseCase<List<Post>, GetListPost.Params> {
-    return getListPost
-  }
 }

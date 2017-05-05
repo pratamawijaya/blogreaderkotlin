@@ -2,7 +2,7 @@ package com.pratamawijaya.blogreaderkotlin.presentation.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.pratamawijaya.blogreaderkotlin.app.di.AppComponent
+import com.pratamawijaya.blogreaderkotlin.app.di.component.AppComponent
 import com.pratamawijaya.blogreaderkotlin.app.BaseApp
 
 /**

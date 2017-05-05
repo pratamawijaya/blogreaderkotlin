@@ -1,4 +1,4 @@
-package com.pratamawijaya.blogreaderkotlin.app.di
+package com.pratamawijaya.blogreaderkotlin.app.di.module
 
 import android.app.Application
 import com.pratamawijaya.blogreaderkotlin.data.executor.JobExecutor
@@ -15,7 +15,7 @@ import javax.inject.Singleton
  * Project Name : BlogReaderKotlin
  */
 
-@Module
+@Module @Singleton
 class AppModule constructor(private val application: Application) {
 
   @Provides fun provideApplication(): Application {

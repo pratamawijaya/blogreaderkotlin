@@ -1,4 +1,4 @@
-package com.pratamawijaya.blogreaderkotlin.app.di
+package com.pratamawijaya.blogreaderkotlin.app.di.module
 
 import android.app.Application
 import com.pratamawijaya.blogreaderkotlin.app.di.scope.OkHttpInterceptors

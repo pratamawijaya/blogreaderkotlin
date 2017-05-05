@@ -1,5 +1,6 @@
-package com.pratamawijaya.blogreaderkotlin.app.di
+package com.pratamawijaya.blogreaderkotlin.app.di.module
 
+import android.support.annotation.NonNull
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -22,7 +23,9 @@ import javax.inject.Singleton
 @Singleton
 class ApiModule {
 
-  @Provides fun provideRetrofit(okHttpClient: OkHttpClient,
+  @Provides
+  @NonNull
+  fun provideRetrofit(okHttpClient: OkHttpClient,
       converterFactory: Factory): Retrofit {
     return Builder().baseUrl("https://pratamawijaya.com/api/")
         .client(okHttpClient)
@@ -31,10 +34,13 @@ class ApiModule {
         .build()
   }
 
-  @Provides fun provideGson(): Gson {
-    val gson = GsonBuilder().setDateFormat("").create()
-    return gson
-  }
+  @Provides
+  @NonNull
+  fun provideGson(): Gson = GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()
 
-  @Provides fun provideConverter(gson: Gson): Factory = GsonConverterFactory.create(gson)
+  @Provides
+  @NonNull
+  fun provideConverter(gson: Gson): Factory = GsonConverterFactory.create(gson)
+
+
 }
