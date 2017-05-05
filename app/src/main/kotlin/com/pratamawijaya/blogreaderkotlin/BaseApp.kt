@@ -1,11 +1,10 @@
-package com.pratamawijaya.blogreaderkotlin.app
+package com.pratamawijaya.blogreaderkotlin
 
 import android.app.Application
 import android.content.Context
-import com.pratamawijaya.blogreaderkotlin.BuildConfig
-import com.pratamawijaya.blogreaderkotlin.app.di.component.AppComponent
-import com.pratamawijaya.blogreaderkotlin.app.di.component.DaggerAppComponent
-import com.pratamawijaya.blogreaderkotlin.app.di.module.AppModule
+import com.pratamawijaya.blogreaderkotlin.presentation.di.component.AppComponent
+import com.pratamawijaya.blogreaderkotlin.presentation.di.component.DaggerAppComponent
+import com.pratamawijaya.blogreaderkotlin.presentation.di.module.AppModule
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 

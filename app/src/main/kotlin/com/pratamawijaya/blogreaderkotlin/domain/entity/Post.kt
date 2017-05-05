@@ -7,5 +7,10 @@ import java.util.Date
  * Date : Dec - 12/23/16
  * Project Name : BlogReaderKotlin
  */
-open class Post(id: Int = 0, title: String = "", url: String = "", date: Date? = null,
-    content: String = "", modified: Date?)
+open class Post {
+  var id: Int = 0
+  var title: String? = null
+  var url: String? = null
+  var date: Date? = null
+  var content: String? = null
+}

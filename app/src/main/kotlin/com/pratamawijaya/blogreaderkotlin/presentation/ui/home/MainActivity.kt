@@ -2,11 +2,16 @@ package com.pratamawijaya.blogreaderkotlin.presentation.ui.home
 
 import android.os.Bundle
 import com.pratamawijaya.blogreaderkotlin.R.layout
-import com.pratamawijaya.blogreaderkotlin.app.di.component.AppComponent
 import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
 import com.pratamawijaya.blogreaderkotlin.presentation.base.BaseActivity
+import com.pratamawijaya.blogreaderkotlin.presentation.di.component.AppComponent
 
 class MainActivity : BaseActivity(), MainView {
+
+
+  override fun buildComponent(appComponent: AppComponent) {
+
+  }
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +20,6 @@ class MainActivity : BaseActivity(), MainView {
 
   }
 
-  override fun buildComponent(appComponent: AppComponent) {
-
-  }
 
   override fun showLoading() {
   }
