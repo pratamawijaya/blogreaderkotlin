@@ -1,6 +1,7 @@
 package com.pratamawijaya.blogreaderkotlin.presentation.ui.home
 
 import android.os.Bundle
+import android.widget.Toast
 import com.pratamawijaya.blogreaderkotlin.R.layout
 import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
 import com.pratamawijaya.blogreaderkotlin.presentation.base.BaseActivity
@@ -44,6 +45,7 @@ class MainActivity : BaseActivity(), MainView {
   override fun displayData(t: List<Post>) {
     for (post in t) {
       Timber.d("title %s", post.title)
+      Toast.makeText(this, "title " + post.title, Toast.LENGTH_SHORT)
     }
   }
 
