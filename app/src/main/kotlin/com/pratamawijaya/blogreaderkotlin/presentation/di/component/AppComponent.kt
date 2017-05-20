@@ -20,18 +20,18 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(AppModule::class))
 interface AppComponent {
-  fun inject(application: Application)
+    fun inject(application: Application)
 
-  val androidApp: BaseApp
+    val androidApp: BaseApp
 
-  fun context(): Context
+    fun context(): Context
 
-  fun threadExecutor(): ThreadExecutor
+    fun threadExecutor(): ThreadExecutor
 
-  fun postExecutionThread(): PostExecutionThread
+    fun postExecutionThread(): PostExecutionThread
 
-  fun postServices(): PostServices
+    fun postServices(): PostServices
 
-  fun postModelMapper(): PostModelMapper
+    fun postModelMapper(): PostModelMapper
 
 }

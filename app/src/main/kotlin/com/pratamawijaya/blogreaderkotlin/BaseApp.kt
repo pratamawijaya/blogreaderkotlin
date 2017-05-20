@@ -15,20 +15,20 @@ import timber.log.Timber.DebugTree
  */
 class BaseApp : Application() {
 
-  companion object {
-    open fun get(context: Context): BaseApp = context.applicationContext as BaseApp
-  }
+    companion object {
+        fun get(context: Context): BaseApp = context.applicationContext as BaseApp
+    }
 
-  val appComponent: AppComponent
-    get() = DaggerAppComponent.builder()
-        .appModule(AppModule(this))
-        .build()
+    val appComponent: AppComponent
+        get() = DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .build()
 
-  override fun onCreate() {
-    super.onCreate()
-    appComponent.inject(this)
+    override fun onCreate() {
+        super.onCreate()
+        appComponent.inject(this)
 
-    if (BuildConfig.DEBUG) Timber.plant(DebugTree())
-  }
+        if (BuildConfig.DEBUG) Timber.plant(DebugTree())
+    }
 
 }

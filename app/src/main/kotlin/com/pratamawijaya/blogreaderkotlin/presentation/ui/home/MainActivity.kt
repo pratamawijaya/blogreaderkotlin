@@ -20,59 +20,59 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
 
-  @Inject
-  lateinit var presenter: MainPresenter
+    @Inject
+    lateinit var presenter: MainPresenter
 
-  var posts = arrayListOf<Post>()
+    var posts = arrayListOf<Post>()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(layout.activity_main)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(layout.activity_main)
 
-    presenter.attachView(this)
-    setupRecyclerView()
-    presenter.getListPost(1, true)
-  }
-
-  private fun setupRecyclerView() {
-    rvContent.layoutManager = LinearLayoutManager(this)
-    rvContent.adapter = MainAdapter(this, posts) {
-      clickPost(it)
+        presenter.attachView(this)
+        setupRecyclerView()
+        presenter.getListPost(1, true)
     }
-  }
 
-  private fun clickPost(post: Post) {
-    Toast.makeText(this, "title " + post.title, Toast.LENGTH_SHORT)
-  }
-
-  override fun buildComponent(appComponent: AppComponent) {
-    DaggerMainComponent.builder()
-        .appComponent(appComponent)
-        .mainModule(MainModule(this))
-        .build().inject(this)
-  }
-
-  override fun showLoading() {
-    rvContent.visibility = GONE
-    loading.visibility = VISIBLE
-  }
-
-  override fun hideLoading() {
-    rvContent.visibility = VISIBLE
-    loading.visibility = GONE
-  }
-
-  override fun showMessage(message: String?) {
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-  }
-
-
-  override fun displayData(t: List<Post>) {
-    for (post in t) {
-      Timber.d("title %s", post.title)
-      posts.add(post)
+    private fun setupRecyclerView() {
+        rvContent.layoutManager = LinearLayoutManager(this)
+        rvContent.adapter = MainAdapter(this, posts) {
+            clickPost(it)
+        }
     }
-    rvContent.adapter.notifyDataSetChanged()
-  }
+
+    private fun clickPost(post: Post) {
+        Toast.makeText(this, "title " + post.title, Toast.LENGTH_SHORT)
+    }
+
+    override fun buildComponent(appComponent: AppComponent) {
+        DaggerMainComponent.builder()
+                .appComponent(appComponent)
+                .mainModule(MainModule(this))
+                .build().inject(this)
+    }
+
+    override fun showLoading() {
+        rvContent.visibility = GONE
+        loading.visibility = VISIBLE
+    }
+
+    override fun hideLoading() {
+        rvContent.visibility = VISIBLE
+        loading.visibility = GONE
+    }
+
+    override fun showMessage(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+
+    override fun displayData(t: List<Post>) {
+        for (post in t) {
+            Timber.d("title %s", post.title)
+            posts.add(post)
+        }
+        rvContent.adapter.notifyDataSetChanged()
+    }
 
 }

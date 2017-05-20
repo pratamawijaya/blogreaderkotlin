@@ -11,28 +11,28 @@ import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
 
 class PostModelMapper {
 
-  fun transform(collection: List<PostModel>): List<Post> {
-    val list = ArrayList<Post>()
-    var entity: Post?
+    fun transform(collection: List<PostModel>): List<Post> {
+        val list = ArrayList<Post>()
+        var entity: Post?
 
-    for (model in collection) {
-      entity = transform(model)
-      if (entity != null) {
-        list.add(entity)
-      }
+        for (model in collection) {
+            entity = transform(model)
+            if (entity != null) {
+                list.add(entity)
+            }
+        }
+        return list
     }
-    return list
-  }
 
-  fun transform(model: PostModel?): Post? {
-    if (model != null) {
-      val post = Post()
-      post.id = model.id
-      post.title = model.title
-      post.url = model.url
-      post.content = model.content
-      return post
+    fun transform(model: PostModel?): Post? {
+        if (model != null) {
+            val post = Post()
+            post.id = model.id
+            post.title = model.title
+            post.url = model.url
+            post.content = model.content
+            return post
+        }
+        return null
     }
-    return null
-  }
 }

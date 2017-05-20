@@ -9,7 +9,7 @@ import io.reactivex.Observable
  * Project Name : BlogReaderKotlin
  */
 interface PostRepository {
-  fun getPosts(page: Int, isUpdate: Boolean): Observable<List<Post>>
+    fun getPosts(page: Int, isUpdate: Boolean): Observable<List<Post>>
 
-  fun getPost(postId: Int, isUpdate: Boolean): Observable<Post>
+    fun getPost(postId: Int, isUpdate: Boolean): Observable<Post>
 }

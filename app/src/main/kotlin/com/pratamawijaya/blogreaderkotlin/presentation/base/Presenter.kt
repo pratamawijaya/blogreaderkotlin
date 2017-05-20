@@ -6,7 +6,7 @@ package com.pratamawijaya.blogreaderkotlin.presentation.base
  * Project Name : BlogReaderKotlin
  */
 interface Presenter<V : BaseView> {
-  fun attachView(mvpView: V)
+    fun attachView(mvpView: V)
 
-  fun detachView()
+    fun detachView()
 }

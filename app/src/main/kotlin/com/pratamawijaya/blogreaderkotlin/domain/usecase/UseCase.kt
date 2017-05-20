@@ -24,45 +24,45 @@ import io.reactivex.schedulers.Schedulers
  * that will execute its job in a background thread and will post the result in the UI thread.
  */
 abstract class UseCase<T, Params> protected constructor(private val threadExecutor: ThreadExecutor,
-    private val postExecutionThread: PostExecutionThread) {
+                                                        private val postExecutionThread: PostExecutionThread) {
 
-  private val disposables: CompositeDisposable = CompositeDisposable()
+    private val disposables: CompositeDisposable = CompositeDisposable()
 
-  internal abstract fun buildUseCaseObservable(params: Params): Observable<T>
+    internal abstract fun buildUseCaseObservable(params: Params): Observable<T>
 
-  /**
-   * Executes the current use case.
+    /**
+     * Executes the current use case.
 
-   * @param observer [DisposableObserver] which will be listening to the observable build
-   * * by [.buildUseCaseObservable] ()} method.
-   * *
-   * @param params Parameters (Optional) used to build/execute this use case.
-   */
-  fun execute(observer: DisposableObserver<T>, params: Params) {
-    Preconditions.checkNotNull(observer)
+     * @param observer [DisposableObserver] which will be listening to the observable build
+     * * by [.buildUseCaseObservable] ()} method.
+     * *
+     * @param params Parameters (Optional) used to build/execute this use case.
+     */
+    fun execute(observer: DisposableObserver<T>, params: Params) {
+        Preconditions.checkNotNull(observer)
 
-    val observable = this.buildUseCaseObservable(params).subscribeOn(
-        Schedulers.from(threadExecutor))
-        .observeOn(postExecutionThread.getScheduler())
+        val observable = this.buildUseCaseObservable(params).subscribeOn(
+                Schedulers.from(threadExecutor))
+                .observeOn(postExecutionThread.getScheduler())
 
-    addDisposable(observable.subscribeWith(observer))
-  }
-
-  /**
-   * Dispose from current [CompositeDisposable].
-   */
-  fun dispose() {
-    if (!disposables.isDisposed()) {
-      disposables.dispose()
+        addDisposable(observable.subscribeWith(observer))
     }
-  }
 
-  /**
-   * Dispose from current [CompositeDisposable].
-   */
-  private fun addDisposable(disposable: Disposable) {
-    Preconditions.checkNotNull(disposable)
-    Preconditions.checkNotNull(disposables)
-    disposables.add(disposable)
-  }
+    /**
+     * Dispose from current [CompositeDisposable].
+     */
+    fun dispose() {
+        if (!disposables.isDisposed()) {
+            disposables.dispose()
+        }
+    }
+
+    /**
+     * Dispose from current [CompositeDisposable].
+     */
+    private fun addDisposable(disposable: Disposable) {
+        Preconditions.checkNotNull(disposable)
+        Preconditions.checkNotNull(disposables)
+        disposables.add(disposable)
+    }
 }

@@ -7,27 +7,27 @@ package com.pratamawijaya.blogreaderkotlin.presentation.base
  */
 open class BasePresenter<T : BaseView> : Presenter<T> {
 
-  private var view: T? = null
+    private var view: T? = null
 
-  override fun attachView(mvpView: T) {
-    this.view = mvpView
-  }
+    override fun attachView(mvpView: T) {
+        this.view = mvpView
+    }
 
-  override fun detachView() {
-    this.view = null
-  }
+    override fun detachView() {
+        this.view = null
+    }
 
-  fun isViewAttached(): Boolean {
-    return view != null
-  }
+    fun isViewAttached(): Boolean {
+        return view != null
+    }
 
-  fun getView(): T = view!!
+    fun getView(): T = view!!
 
-  fun checkViewAttached() {
-    if (!isViewAttached()) throw MvpViewNotAttachedException()
-  }
+    fun checkViewAttached() {
+        if (!isViewAttached()) throw MvpViewNotAttachedException()
+    }
 
-  class MvpViewNotAttachedException : RuntimeException(
-      "Please call Presenter.attachView(MvpView) before" + " requesting data to the Presenter")
+    class MvpViewNotAttachedException : RuntimeException(
+            "Please call Presenter.attachView(MvpView) before" + " requesting data to the Presenter")
 
 }

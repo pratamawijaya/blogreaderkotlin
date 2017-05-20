@@ -10,6 +10,6 @@ import com.pratamawijaya.blogreaderkotlin.presentation.base.BaseView
  */
 interface MainView : BaseView {
 
-  fun displayData(t: List<Post>)
+    fun displayData(t: List<Post>)
 
 }

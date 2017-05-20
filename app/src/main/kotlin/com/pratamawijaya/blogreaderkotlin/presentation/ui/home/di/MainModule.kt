@@ -19,16 +19,16 @@ import dagger.Provides
 @Module
 class MainModule constructor(var activity: Activity) {
 
-  @Provides fun provideActivity(): Activity {
-    return activity
-  }
+    @Provides fun provideActivity(): Activity {
+        return activity
+    }
 
-  @Provides fun provideRepository(postRepositoryImpl: PostRepositoryImpl): PostRepository {
-    return postRepositoryImpl
-  }
+    @Provides fun provideRepository(postRepositoryImpl: PostRepositoryImpl): PostRepository {
+        return postRepositoryImpl
+    }
 
-  @Provides fun provideGetPostUseCase(
-      getListPost: GetListPost): UseCase<List<Post>, Params> {
-    return getListPost
-  }
+    @Provides fun provideGetPostUseCase(
+            getListPost: GetListPost): UseCase<List<Post>, Params> {
+        return getListPost
+    }
 }

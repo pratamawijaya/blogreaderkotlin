@@ -1,6 +1,6 @@
 package com.pratamawijaya.blogreaderkotlin.domain.entity
 
-import java.util.Date
+import java.util.*
 
 /**
  * Created by mnemonix
@@ -8,9 +8,9 @@ import java.util.Date
  * Project Name : BlogReaderKotlin
  */
 open class Post {
-  var id: Int = 0
-  var title: String? = null
-  var url: String? = null
-  var date: Date? = null
-  var content: String? = null
+    var id: Int = 0
+    var title: String? = null
+    var url: String? = null
+    var date: Date? = null
+    var content: String? = null
 }

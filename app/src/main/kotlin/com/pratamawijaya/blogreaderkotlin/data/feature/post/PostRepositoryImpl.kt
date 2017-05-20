@@ -12,16 +12,16 @@ import javax.inject.Inject
  * Project Name : BlogReaderKotlin
  */
 class PostRepositoryImpl @Inject constructor(val services: PostServices,
-    val postMapper: PostModelMapper) : PostRepository {
+                                             val postMapper: PostModelMapper) : PostRepository {
 
-  override fun getPosts(page: Int, isUpdate: Boolean): Observable<List<Post>> {
-    return services.getRecentPosts(page).flatMap {
-      Observable.just(it.posts)
-    }.map { this.postMapper.transform(it) }
-  }
+    override fun getPosts(page: Int, isUpdate: Boolean): Observable<List<Post>> {
+        return services.getRecentPosts(page).flatMap {
+            Observable.just(it.posts)
+        }.map { this.postMapper.transform(it) }
+    }
 
-  override fun getPost(postId: Int, isUpdate: Boolean): Observable<Post> {
-    return services.getPost(postId).flatMap { Observable.just(it.post) }
-        .map { this.postMapper.transform(it) }
-  }
+    override fun getPost(postId: Int, isUpdate: Boolean): Observable<Post> {
+        return services.getPost(postId).flatMap { Observable.just(it.post) }
+                .map { this.postMapper.transform(it) }
+    }
 }

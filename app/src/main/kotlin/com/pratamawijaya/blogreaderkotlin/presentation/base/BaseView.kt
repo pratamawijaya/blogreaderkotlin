@@ -6,7 +6,7 @@ package com.pratamawijaya.blogreaderkotlin.presentation.base
  * Project Name : BlogReaderKotlin
  */
 interface BaseView {
-  fun showLoading()
-  fun hideLoading()
-  fun showMessage(message: String?)
+    fun showLoading()
+    fun hideLoading()
+    fun showMessage(message: String?)
 }

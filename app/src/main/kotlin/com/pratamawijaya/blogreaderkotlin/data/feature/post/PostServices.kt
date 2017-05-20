@@ -13,7 +13,7 @@ import retrofit2.http.Query
  * Project Name : BlogReaderKotlin
  */
 interface PostServices {
-  @GET("get_recent_posts/") fun getRecentPosts(@Query("page") page: Int): Observable<PostsResponse>
+    @GET("get_recent_posts/") fun getRecentPosts(@Query("page") page: Int): Observable<PostsResponse>
 
-  @GET("get_post/") fun getPost(@Query("post_id") postId: Int): Observable<PostResponse>
+    @GET("get_post/") fun getPost(@Query("post_id") postId: Int): Observable<PostResponse>
 }

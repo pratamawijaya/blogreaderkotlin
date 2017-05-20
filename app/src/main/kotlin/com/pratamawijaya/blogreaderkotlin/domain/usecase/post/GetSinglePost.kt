@@ -14,20 +14,20 @@ import javax.inject.Inject
  * Project Name : BlogReaderKotlin
  */
 class GetSinglePost @Inject constructor(threadExecutor: ThreadExecutor,
-    postExecutionThread: PostExecutionThread,
-    private val repository: PostRepository) : UseCase<Post, GetSinglePost.Params>(
-    threadExecutor, postExecutionThread) {
+                                        postExecutionThread: PostExecutionThread,
+                                        private val repository: PostRepository) : UseCase<Post, GetSinglePost.Params>(
+        threadExecutor, postExecutionThread) {
 
-  override fun buildUseCaseObservable(params: Params): Observable<Post> {
-    return repository.getPost(params.postId,params.isUpdate)
-  }
-
-  class Params private constructor(val postId: Int, val isUpdate: Boolean) {
-    companion object {
-      fun forPost(postId: Int, isUpdate: Boolean): Params {
-        return Params(postId, isUpdate)
-      }
+    override fun buildUseCaseObservable(params: Params): Observable<Post> {
+        return repository.getPost(params.postId, params.isUpdate)
     }
-  }
+
+    class Params private constructor(val postId: Int, val isUpdate: Boolean) {
+        companion object {
+            fun forPost(postId: Int, isUpdate: Boolean): Params {
+                return Params(postId, isUpdate)
+            }
+        }
+    }
 
 }

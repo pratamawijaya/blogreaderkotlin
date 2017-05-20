@@ -8,5 +8,5 @@ import io.reactivex.Scheduler
  * Project Name : BlogReaderKotlin
  */
 interface PostExecutionThread {
-  fun getScheduler(): Scheduler
+    fun getScheduler(): Scheduler
 }

@@ -32,70 +32,70 @@ import javax.inject.Singleton
 @Module
 class AppModule constructor(private val application: BaseApp) {
 
-  private val DISK_CACHE_SIZE = 50 * 1024 * 1024 // 50MB
-  private val DISK_CACHE_FOLDER = "blog_apps"
+    private val DISK_CACHE_SIZE = 50 * 1024 * 1024 // 50MB
+    private val DISK_CACHE_FOLDER = "blog_apps"
 
-  @Provides
-  @Singleton
-  fun provideApp(): BaseApp = application
+    @Provides
+    @Singleton
+    fun provideApp(): BaseApp = application
 
-  @Provides
-  @Singleton
-  fun provideApplicationContext(): Context = application
+    @Provides
+    @Singleton
+    fun provideApplicationContext(): Context = application
 
-  @Provides
-  @Singleton
-  fun provideThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor = jobExecutor
+    @Provides
+    @Singleton
+    fun provideThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor = jobExecutor
 
-  @Provides
-  @Singleton
-  fun providePostExecutionThread(uiThread: UiThread): PostExecutionThread = uiThread
-
-
-  @Provides @Singleton fun provideOkHttpClient(app: BaseApp): OkHttpClient {
-    return createOkHttpClient(createOkHttpClientBuilder(app))
-  }
-
-  private fun createOkHttpClient(builder: OkHttpClient.Builder): OkHttpClient {
-    val httpLoggingInterceptor = HttpLoggingInterceptor()
-    httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-    builder.addInterceptor(httpLoggingInterceptor)
-    return builder.build()
-  }
-
-  private fun createOkHttpClientBuilder(app: Application): OkHttpClient.Builder {
-    return OkHttpClient.Builder().cache(createHttpCache(app))
-  }
-
-  private fun createHttpCache(application: Application): Cache {
-    val cacheDir = File(application.cacheDir, DISK_CACHE_FOLDER)
-    return Cache(cacheDir, DISK_CACHE_SIZE.toLong())
-  }
+    @Provides
+    @Singleton
+    fun providePostExecutionThread(uiThread: UiThread): PostExecutionThread = uiThread
 
 
-  @Provides @Singleton fun provideRetrofit(okHttpClient: OkHttpClient,
-      factory: Converter.Factory): Retrofit {
-    return Retrofit.Builder().baseUrl("https://pratamawijaya.com/api/")
-        .client(okHttpClient)
-        .addConverterFactory(factory)
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .validateEagerly(BuildConfig.DEBUG)
-        .build()
-  }
+    @Provides @Singleton fun provideOkHttpClient(app: BaseApp): OkHttpClient {
+        return createOkHttpClient(createOkHttpClientBuilder(app))
+    }
 
-  @Provides @Singleton internal fun providesGson(): Gson {
-    val gson = GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()
-    return gson
-  }
+    private fun createOkHttpClient(builder: OkHttpClient.Builder): OkHttpClient {
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        builder.addInterceptor(httpLoggingInterceptor)
+        return builder.build()
+    }
 
-  @Provides @Singleton internal fun provideConverter(gson: Gson): Converter.Factory {
-    return GsonConverterFactory.create(gson)
-  }
+    private fun createOkHttpClientBuilder(app: Application): OkHttpClient.Builder {
+        return OkHttpClient.Builder().cache(createHttpCache(app))
+    }
 
-  @Provides @Singleton
-  fun providePostServices(retrofit: Retrofit) = retrofit.create(PostServices::class.java)
+    private fun createHttpCache(application: Application): Cache {
+        val cacheDir = File(application.cacheDir, DISK_CACHE_FOLDER)
+        return Cache(cacheDir, DISK_CACHE_SIZE.toLong())
+    }
 
-  @Provides @Singleton
-  fun providePostModelMapper() = PostModelMapper()
+
+    @Provides @Singleton fun provideRetrofit(okHttpClient: OkHttpClient,
+                                             factory: Converter.Factory): Retrofit {
+        return Retrofit.Builder().baseUrl("https://pratamawijaya.com/api/")
+                .client(okHttpClient)
+                .addConverterFactory(factory)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .validateEagerly(BuildConfig.DEBUG)
+                .build()
+    }
+
+    @Provides @Singleton internal fun providesGson(): Gson {
+        val gson = GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()
+        return gson
+    }
+
+    @Provides @Singleton internal fun provideConverter(gson: Gson): Converter.Factory {
+        return GsonConverterFactory.create(gson)
+    }
+
+    @Provides @Singleton
+    fun providePostServices(retrofit: Retrofit) = retrofit.create(PostServices::class.java)
+
+    @Provides @Singleton
+    fun providePostModelMapper() = PostModelMapper()
 
 }

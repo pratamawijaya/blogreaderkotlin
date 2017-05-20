@@ -8,14 +8,14 @@ import java.util.Date
  * Project Name : BlogReaderKotlin
  */
 data class PostModel(val id: Int,
-    val type: String,
-    val slug: String,
-    val title: String,
-    val url: String,
-    val content: String,
-    val excerpt: String,
-    val date: Date,
-    val modified: Date
+                     val type: String,
+                     val slug: String,
+                     val title: String,
+                     val url: String,
+                     val content: String,
+                     val excerpt: String,
+                     val date: Date,
+                     val modified: Date
 )
 
 data class PostResponse(val post: PostModel)

@@ -13,5 +13,5 @@ import dagger.Component
 @ActivityScope
 @Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(MainModule::class))
 interface MainComponent {
-  fun inject(activity: MainActivity)
+    fun inject(activity: MainActivity)
 }

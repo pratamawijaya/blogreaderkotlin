@@ -8,12 +8,12 @@ import io.reactivex.observers.DisposableObserver
  * Project Name : BlogReaderKotlin
  */
 open class DefaultObserver<T> : DisposableObserver<T>() {
-  override fun onNext(t: T) {
-  }
+    override fun onNext(t: T) {
+    }
 
-  override fun onError(e: Throwable?) {
-  }
+    override fun onError(e: Throwable?) {
+    }
 
-  override fun onComplete() {
-  }
+    override fun onComplete() {
+    }
 }
