@@ -30,6 +30,7 @@ class PostModelMapper {
             post.id = model.id
             post.title = model.title
             post.url = model.url
+            post.date = model.date
             post.content = model.content
             return post
         }
