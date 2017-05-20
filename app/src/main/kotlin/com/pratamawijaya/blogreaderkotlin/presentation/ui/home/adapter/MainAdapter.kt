@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.item_post.view.*
 class MainAdapter(val context: Context, val posts: List<Post>,
                   val listener: (Post) -> Unit) : RecyclerView.Adapter<MainHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder = MainHolder(
             LayoutInflater.from(context).inflate(R.layout.item_post, parent, false))
 
@@ -31,7 +30,7 @@ class MainAdapter(val context: Context, val posts: List<Post>,
 
         fun bindItem(post: Post, listener: (Post) -> Unit) = with(itemView) {
             tvTitle.text = post.title
-            tvDate.text = post.date.toString()
+            tvDate.text = post.getDateFormatted()
 
             setOnClickListener { listener(post) }
         }
