@@ -8,17 +8,19 @@ import android.widget.Toast
 import com.pratamawijaya.blogreaderkotlin.R.layout
 import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
 import com.pratamawijaya.blogreaderkotlin.presentation.base.BaseActivity
+import com.pratamawijaya.blogreaderkotlin.presentation.common.InfiniteScrollListener
 import com.pratamawijaya.blogreaderkotlin.presentation.di.component.AppComponent
 import com.pratamawijaya.blogreaderkotlin.presentation.ui.home.adapter.MainAdapter
 import com.pratamawijaya.blogreaderkotlin.presentation.ui.home.di.DaggerMainComponent
 import com.pratamawijaya.blogreaderkotlin.presentation.ui.home.di.MainModule
 import com.pratamawijaya.blogreaderkotlin.presentation.ui.home.presenter.MainPresenter
-import kotlinx.android.synthetic.main.activity_main.loading
-import kotlinx.android.synthetic.main.activity_main.rvContent
+import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
+
+    var page: Int = 1
 
     @Inject
     lateinit var presenter: MainPresenter
@@ -31,14 +33,27 @@ class MainActivity : BaseActivity(), MainView {
 
         presenter.attachView(this)
         setupRecyclerView()
-        presenter.getListPost(1, true)
+
+        requestPost(page)
     }
 
     private fun setupRecyclerView() {
-        rvContent.layoutManager = LinearLayoutManager(this)
+        val linearLayoutManager = LinearLayoutManager(this)
+        rvContent.layoutManager = linearLayoutManager
+
+
         rvContent.adapter = MainAdapter(this, posts) {
             clickPost(it)
         }
+
+        rvContent.addOnScrollListener(InfiniteScrollListener({
+            page++
+            requestPost(page)
+        }, linearLayoutManager))
+    }
+
+    private fun requestPost(page: Int) {
+        presenter.getListPost(page, true)
     }
 
     private fun clickPost(post: Post) {
