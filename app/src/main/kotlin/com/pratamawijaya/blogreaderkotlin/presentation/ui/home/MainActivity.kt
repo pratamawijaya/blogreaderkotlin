@@ -2,11 +2,13 @@ package com.pratamawijaya.blogreaderkotlin.presentation.ui.home
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import com.pratamawijaya.blogreaderkotlin.R.layout
 import com.pratamawijaya.blogreaderkotlin.domain.entity.Post
+import com.pratamawijaya.blogreaderkotlin.extensions.toast
 import com.pratamawijaya.blogreaderkotlin.presentation.base.BaseActivity
 import com.pratamawijaya.blogreaderkotlin.presentation.common.InfiniteScrollListener
 import com.pratamawijaya.blogreaderkotlin.presentation.di.component.AppComponent
@@ -18,8 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainView {
-
+class MainActivity : BaseActivity(), MainView, MainAdapter.MainAdapterListener {
     var page: Int = 1
 
     @Inject
@@ -42,9 +43,7 @@ class MainActivity : BaseActivity(), MainView {
         rvContent.layoutManager = linearLayoutManager
 
 
-        rvContent.adapter = MainAdapter(this, posts) {
-            clickPost(it)
-        }
+        rvContent.adapter = MainAdapter(this, posts, this)
 
         rvContent.addOnScrollListener(InfiniteScrollListener({
             page++
@@ -56,8 +55,9 @@ class MainActivity : BaseActivity(), MainView {
         presenter.getListPost(page, true)
     }
 
-    private fun clickPost(post: Post) {
-        Toast.makeText(this, "title " + post.title, Toast.LENGTH_SHORT)
+    override fun postSelected(post: Post) {
+        Log.d("mainactivity", "data : ${post.title}")
+        toast(post.title ?: "empty")
     }
 
     override fun buildComponent(appComponent: AppComponent) {
@@ -80,7 +80,6 @@ class MainActivity : BaseActivity(), MainView {
     override fun showMessage(message: String?) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
-
 
     override fun displayData(t: List<Post>) {
         for (post in t) {

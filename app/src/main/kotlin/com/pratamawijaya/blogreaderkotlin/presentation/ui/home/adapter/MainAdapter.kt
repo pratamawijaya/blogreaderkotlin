@@ -15,8 +15,12 @@ import kotlinx.android.synthetic.main.item_post.view.*
  * Date : May - 5/8/17
  * Project Name : BlogReaderKotlin
  */
-class MainAdapter(val context: Context, val posts: List<Post>,
-                  val listener: (Post) -> Unit) : RecyclerView.Adapter<MainHolder>() {
+class MainAdapter(val context: Context, val posts: List<Post>, val listener: MainAdapterListener)
+    : RecyclerView.Adapter<MainHolder>() {
+
+    interface MainAdapterListener {
+        fun postSelected(post: Post)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder = MainHolder(
             LayoutInflater.from(context).inflate(R.layout.item_post, parent, false))
@@ -28,11 +32,11 @@ class MainAdapter(val context: Context, val posts: List<Post>,
 
     class MainHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindItem(post: Post, listener: (Post) -> Unit) = with(itemView) {
+        fun bindItem(post: Post, listener: MainAdapterListener) = with(itemView) {
             tvTitle.text = post.title
             tvDate.text = post.getDateFormatted()
 
-            setOnClickListener { listener(post) }
+            setOnClickListener { listener.postSelected(post) }
         }
 
 
